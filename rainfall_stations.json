@@ -1,0 +1,43 @@
+{
+    "berrylands": {
+        "@id": "http://environment.data.gov.uk/flood-monitoring/id/stations/286392TP",
+        "easting": 519450,
+        "gridReference": "TQ194682",
+        "label": "Rainfall station",
+        "lat": 51.400709,
+        "long": -0.284238,
+        "measures": [
+            {
+                "@id": "http://environment.data.gov.uk/flood-monitoring/id/measures/286392TP-rainfall-tipping_bucket_raingauge-t-15_min-mm",
+                "parameter": "rainfall",
+                "parameterName": "Rainfall",
+                "period": 900,
+                "qualifier": "Tipping Bucket Raingauge",
+                "unitName": "mm"
+            }
+        ],
+        "northing": 168250,
+        "notation": "286392TP",
+        "stationReference": "286392TP"
+    },
+    "fulwell": { 
+    "@id" : "http://environment.data.gov.uk/flood-monitoring/id/stations/E8290" ,
+    "easting" : 514550 ,
+    "gridReference" : "TQ145719" ,
+    "label" : "Rainfall station" ,
+    "lat" : 51.434974 ,
+    "long" : -0.353451 ,
+    "measures" : [ { 
+      "@id" : "http://environment.data.gov.uk/flood-monitoring/id/measures/E8290-rainfall-tipping_bucket_raingauge-t-15_min-mm" ,
+      "parameter" : "rainfall" ,
+      "parameterName" : "Rainfall" ,
+      "period" : 900 ,
+      "qualifier" : "Tipping Bucket Raingauge" ,
+      "unitName" : "mm"
+    }
+     ] ,
+    "northing" : 171950 ,
+    "notation" : "E8290" ,
+    "stationReference" : "E8290"
+  }
+}

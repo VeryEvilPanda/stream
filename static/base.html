@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta charset="utf-8">
+        <title>EvilPanda | Coming Soon</title>
+        <link rel="stylesheet" href="main.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Glory:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/ico" href="../favicon.ico">
+        <link rel="preload" href="../background/bushy.jpg" as="image">
+        <link rel="preload" href="../background/riverblur.jpg" as="image">
+        <link rel="preload" href="../background/banyolesblur.jpg" as="image">
+        <script>
+            function change_bg_daily () {
+                const response = fetch("https://api.evilpanda.live/api/photos/daily");
+                const json = response.then(response => response.json());
+                const blurhash = json.then(data => data.blurhash);
+
+                json.then(data => data.url)
+                    .then(url => document.body.style.backgroundImage = "url('" + url + "')");
+                
+                document.getElementById("buttondaily").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                document.getElementById("button1").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("button2").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("button3").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            }
+            
+            function change_bg_1 () {
+                document.body.style.backgroundImage = "url('../background/banyolesblur.jpg')";
+                document.getElementById("button1").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                document.getElementById("button2").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("button3").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("buttondaily").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            }
+
+            function change_bg_2 () {
+                document.body.style.backgroundImage = "url('../background/bushy.jpg')";
+                document.getElementById("button2").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                document.getElementById("button1").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("button3").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("buttondaily").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            }
+
+            function change_bg_3 () {
+                document.body.style.backgroundImage = "url('../background/riverblur.jpg')";
+                document.getElementById("button3").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                document.getElementById("button1").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("button2").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("buttondaily").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="nav">
+            <ul>
+                <li><a href="../" class="home">🏠 Home</a></li>
+                <li><a href="../about" class="about">🏷️ About</a></li>
+                <li><a href="../projects" class="projects">📚 Projects</a></li>
+                <li><a href="../photos" class="photos">📷 Photos</a></li>
+                <li><a href="https://hub.evilpanda.live" class="hub">📎 Hub</a></li>
+            </ul>
+        </div>
+
+        <div class="main_body">
+            <div class="main_text">
+            </div>
+        </div>
+    </body>
+    
+    <footer>
+        <div class="footer_left">
+            <button id="buttondaily" onclick="change_bg_daily()">Daily</button>
+            <button id="button1" onclick="change_bg_1()">1</button>
+            <button id="button2" onclick="change_bg_2()">2</button>
+            <button id="button3" onclick="change_bg_3()" style="background-color: rgba(0, 0, 0, 0.3)">3</button>
+        </div>
+        <div class="footer_right">
+            <div class="copyright_text">© EvilPanda / Will Adams 2023</div>
+        </div>
+    </footer>
+
+</html>
