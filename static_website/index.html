@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <meta charset="utf-8">
+        <title>EvilPanda | Stream at Kingston</title>
+        <link rel="stylesheet" href="https://api.evilpanda.live/static/stream.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Glory:wght@400;600&display=swap" rel="stylesheet">
+        <link rel="icon" type="image/ico" href="https://evilpanda.live/favicon.ico">
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://evilpanda.live/scripts/render_graph.js"></script> 
+        <script>
+            function change_bg_daily () {
+                const response = fetch("https://api.evilpanda.live/api/photos/daily");
+                const json = response.then(response => response.json());
+                const blurhash = json.then(data => data.blurhash);
+
+                json.then(data => data.url)
+                    .then(url => document.body.style.backgroundImage = "url('" + url + "')");
+                
+                document.getElementById("buttondaily").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                document.getElementById("button1").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("button2").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("button3").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            }
+            
+            function change_bg_1 () {
+                document.body.style.backgroundImage = "url('https://evilpanda.live/background/banyolesblur.jpg')";
+                document.getElementById("button1").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                document.getElementById("button2").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("button3").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("buttondaily").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            }
+
+            function change_bg_2 () {
+                document.body.style.backgroundImage = "url('https://evilpanda.live/background/bushy.jpg')";
+                document.getElementById("button2").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                document.getElementById("button1").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("button3").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("buttondaily").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            }
+
+            function change_bg_3 () {
+                document.body.style.backgroundImage = "url('https://evilpanda.live/background/riverblur.jpg')";
+                document.getElementById("button3").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                document.getElementById("button1").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("button2").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                document.getElementById("buttondaily").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+            }
+
+            function toggle_graph() {
+                if (document.getElementById("graph_week").hidden == false) {
+                    document.getElementById("graph_week").hidden = true;
+                    document.getElementById("graph_day").hidden = false;
+                    document.getElementById("toggle_graph").innerHTML = "Switch timeframe";
+                } 
+                else {
+                    document.getElementById("graph_day").hidden = true;
+                    document.getElementById("graph_week").hidden = false;
+                    document.getElementById("data_info").hidden = true;
+                    document.getElementById("toggle_data_info").innerHTML = "Where is this data from?";
+                    document.getElementById("toggle_graph").innerHTML = "Switch timeframe";
+                    document.getElementById("toggle_data_info").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                }
+            }
+
+            function toggle_data_info() {
+                if (document.getElementById("data_info").hidden == false) {
+                    document.getElementById("data_info").hidden = true;
+                    document.getElementById("graph_week").hidden = false;
+                    document.getElementById("toggle_graph").innerHTML = "Switch timeframe";
+                    document.getElementById("toggle_data_info").innerHTML = "Where is this data from?";
+                    document.getElementById("toggle_data_info").style.backgroundColor = "rgba(255, 255, 255, 0.3)";
+                } 
+                else {
+                    document.getElementById("data_info").hidden = false;
+                    document.getElementById("graph_day").hidden = true;
+                    document.getElementById("graph_week").hidden = true;
+                    document.getElementById("toggle_data_info").innerHTML = "Hide extra info";
+                    document.getElementById("toggle_graph").innerHTML = "Show the graph";
+                    document.getElementById("toggle_data_info").style.backgroundColor = "rgba(0, 0, 0, 0.3)";
+                }
+            }
+        </script>
+    </head>
+
+    <body>
+        <div class="nav">
+            <ul>
+                <li><a href="https://evilpanda.live" class="home">🏠 Home</a></li>
+                <li><a href="https://evilpanda.live/about" class="about">🏷️ About</a></li>
+                <li><a href="https://evilpanda.live/projects" class="projects">📚 Projects</a></li>
+                <li><a href="https://evilpanda.live/photos" class="photos">📷 Photos</a></li>
+                <li><a href="https://hub.evilpanda.live" class="hub">📎 Hub</a></li>
+            </ul>
+        </div>
+        <div class="main_body" id="main_body">
+            <div class="main_body_text" id="main_body_text">
+                <h1>🚣 Stream at Kingston</h1>
+                <h3>Summary</h3>
+                We are currently on: <span class="board" id="board">[probably red boards]</span> and <span id="percentage" class="percentage">[data loading]</span> of the locks on the Thames are on red boards
+                <br>
+                The latest flow reading is <span id="stream" class="stream">[data loading]</span> at <span class="latest_stream_time" id="latest_stream_time">[data loading]</span>
+                <br>
+                <h3>Trend information</h3>
+                Week average: <span class="week_avg" id="week_avg" >[data loading]</span> <br>
+                Day average: <span class="day_avg" id="day_avg">[data loading]</span> <br>
+                The stream is currently <span class="week_trend_direction" id="week_trend_direction">[data loading]</span>, at <span class="week_trend" id="week_trend">[data loading]</span> over the last week.
+                Over the last day, the stream is <span id="day_trend" class="day_trend">[data loading]</span>
+                <br><br>
+                <button id="toggle_graph" onclick="toggle_graph()">Switch timeframe</button> <button id="toggle_data_info" onclick="toggle_data_info()">Where is this data from?</button>
+                <div id="graph_week"></div><div id="graph_day"></div><div id="data_info" hidden><br>The data used is official gov.uk data, obtained from the <a href="https://environment.data.gov.uk/flood-monitoring/doc/reference">Environment Agency Real Time flood-monitoring API</a><h3>Future plans</h3>I am currently working on caching the data, to allow for faster access (and less requests to the API), and adding a week as a timeframe option. After that I will hopefully add some kind of mobile support, and perhaps add the river level in as well.</div>
+            </div>
+        </div>
+        <!-- Setup the data for the website -->
+        <script>
+            // Hide everything while loading
+            document.getElementsByClassName('data').style = "color: rgba(0,0,0,0);"
+            // Initialise all the variables
+            var width = document.getElementById('main_body').clientWidth;
+            var width = width * 0.9
+            var graph_week = 0
+            var graph_day = 0
+            async function fetchData() {
+                // Fetch the data from the API
+                var response = await fetch("https://api.evilpanda.live/api/stream");
+                var json = await response.json()
+                // Set the variables from the json
+                graph_week = json.stream_week.graph_data
+                graph_day = json.stream_day.graph_data
+                document.getElementById('board').innerHTML = json.board
+                document.getElementById('percentage').innerHTML = json.percentage_red + "%"
+                document.getElementById('stream').innerHTML = json.latest_stream[0] + " m<sup>3</sup>/s"
+                document.getElementById('latest_stream_time').innerHTML = json.latest_stream[1]
+                document.getElementById('week_avg').innerHTML = json.stream_week.average_flow + " m<sup>3</sup>/s"
+                document.getElementById('day_avg').innerHTML = json.stream_day.average_flow + " m<sup>3</sup>/s"
+                document.getElementById('week_trend_direction').innerHTML = json.stream_week.trend_direction
+                document.getElementById('week_trend').innerHTML = json.stream_week.trend + " m<sup>3</sup>/s"
+                document.getElementById('day_trend').innerHTML = json.stream_day.trend + " m<sup>3</sup>/s"
+                // Set the colour variables
+                document.getElementById('stream').style = json.board_colour
+                document.getElementById('board').style = json.board_colour
+                document.getElementById('percentage').style = json.percentage_colour
+                document.getElementById('week_avg').style = json.stream_week.trend_colour
+                document.getElementById('day_avg').style = json.stream_day.trend_colour
+                document.getElementById('week_trend_direction').style = json.stream_week.trend_colour
+                document.getElementById('week_trend').style = json.stream_week.trend_colour
+                document.getElementById('day_trend').style = json.stream_day.trend_colour
+                // Calculate the 'dynamic' width (not really dynamic - google charts doesn't support that)
+                var width = document.getElementById('main_body').clientWidth;
+                var width = width * 0.99;
+                const div = document.getElementById('graph');
+                // Load the google charts packages and draw the graph once they are loaded
+                google.charts.load('current', { 'packages': ['corechart'] });
+                google.charts.setOnLoadCallback(drawGraph);
+            }
+            // Function for actually drawing the graph
+            function drawGraph() {
+                // First draw the graph for a week
+                var div = document.getElementById('graph_week');
+                var datatable = new google.visualization.DataTable();
+                // Get all parameters for the graph: fill the datatable with the data, and get the options
+                graph_stuff = getGraph(graph_week, width, datatable, 'week');
+                var chart = new google.visualization.LineChart(div);
+                chart.draw(graph_stuff[0], graph_stuff[1]);
+                // Then draw the graph for a day (and hide it by default)
+                var div = document.getElementById('graph_day');
+                var datatable = new google.visualization.DataTable();
+                // Get all parameters for the graph: fill the datatable with the data, and get the options
+                graph_stuff = getGraph(graph_day, width, datatable, 'day');
+                var chart = new google.visualization.LineChart(div);
+                chart.draw(graph_stuff[0], graph_stuff[1]);
+                div.hidden = true;
+                document.getElementsByClassName('data').style = "";
+            }
+            // Actually run the code :)
+            fetchData()
+        </script>
+    </body>
+    
+    <footer>
+        <div class="footer_left">
+            <button id="buttondaily" onclick="change_bg_daily()">Daily</button>
+            <button id="button1" onclick="change_bg_1()">1</button>
+            <button id="button2" onclick="change_bg_2()">2</button>
+            <button id="button3" onclick="change_bg_3()" style="background-color: rgba(0, 0, 0, 0.3)">3</button>
+        </div>
+        <div class="footer_right">
+            <div class="copyright_text">© EvilPanda / Will Adams 2023</div>
+        </div>
+    </footer>
+
+</html>

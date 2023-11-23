@@ -6,7 +6,7 @@ body  {
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-  background-image: url("../background/riverblur.jpg");
+  background-image: url("https://evilpanda.live/background/riverblur.jpg");
 }
 
 
@@ -53,11 +53,46 @@ div.main_body {
   height: 80%;
   background-color: rgba(0, 0, 0, 0.3);
   border-radius: 10px;
+  margin-bottom: 65px;
 }
 
 div.main_body_text {
-  margin: auto;
+  margin-top: -25px;
   display: inline-block;
+}
+
+div.main_body code { 
+  font-size: 15px;
+}
+
+div.main_body button {
+  background-color: rgba(255, 255, 255, 0.3);
+  border: none;
+  color: rgba(255, 255, 255, 1);
+  padding: 5px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font: inherit;
+}
+
+div.main_body button:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+div.main_body a {
+  color: blue;
+  text-decoration: none;
+}
+
+div.main_body a:hover {
+  text-decoration: underline;
+}
+
+div.main_body a:visited {
+  color: blue;
 }
 
 

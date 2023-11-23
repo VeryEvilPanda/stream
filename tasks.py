@@ -1,4 +1,3 @@
-from stream import update_cache
 import asyncio
 import datetime
 

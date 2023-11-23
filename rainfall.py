@@ -28,20 +28,21 @@ async def update_rainfall_cache():
     # Loop through each reading in the data
     for reading in data:
         total += data[reading]
-        if not yesterday and not today:
-            if datetime.datetime.strptime(reading, '%Y-%m-%dT%H:%M:%SZ') > yesterday_start:
-                yesterday = True
+        if today:
+            total_today += data[reading]
         elif yesterday:
             if datetime.datetime.strptime(reading, '%Y-%m-%dT%H:%M:%SZ') > today_start:
                 yesterday = False
                 today = True
+                total_today += data[reading]
             else:
                 total_yesterday += data[reading]
-        elif today:
-            total_today += data[reading]
-            # By the end of the for loop, the last_reading variable should be correct
-            # probably a bad way to do this, but we ball
-            last_reading = reading
+        else:
+            if datetime.datetime.strptime(reading, '%Y-%m-%dT%H:%M:%SZ') > yesterday_start:
+                yesterday = True
+                total_yesterday += data[reading]
+       
+    last_reading = list(data)[-1]
     average_total_day = total / 7
     async with aiofiles.open('data/rainfall.json', 'w') as f:
         await f.write(json.dumps({
